@@ -4,8 +4,10 @@ import NewCard, { NewSchema } from "@/components/component/NewCard";
 import { useEffect, useState } from "react";
 import EmptyItem from "./EmptyItem";
 
+const url = "https://allfunds-backend.onrender.com/api/";
+
 async function getData(): Promise<NewSchema[]> {
-  let data = await fetch("http://localhost:3000/api/news");
+  let data = await fetch(url + "news");
   let newsData = await data.json();
   newsData = newsData.map((news: any) => {
     return {
@@ -22,7 +24,7 @@ async function getData(): Promise<NewSchema[]> {
 }
 
 async function getDataArchived(): Promise<NewSchema[]> {
-  let data = await fetch("http://localhost:3000/api/news/archived");
+  let data = await fetch(url + "news/archived");
   let newsData = await data.json();
   newsData = newsData.map((news: any) => {
     return {
@@ -62,7 +64,7 @@ export default async function NewsList({ isArchived }: Readonly<NewListProps>) {
   const handleAction = async (id: string) => {
     if (isArchived) {
       // Remove the item from the archive
-      await fetch(`http://localhost:3000/api/news/${id}`, {
+      await fetch(url + `news/${id}`, {
         method: "DELETE",
       });
 
@@ -71,7 +73,7 @@ export default async function NewsList({ isArchived }: Readonly<NewListProps>) {
       setNews(updatedNews);
     } else {
       // Archive the item
-      await fetch(`http://localhost:3000/api/news/${id}/archive`, {
+      await fetch(url + `news/${id}/archive`, {
         method: "PUT",
       });
 
