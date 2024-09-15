@@ -3,6 +3,8 @@
 import NewCard, { NewSchema } from "@/components/component/NewCard";
 import { useEffect, useState } from "react";
 import EmptyItem from "./EmptyItem";
+import LoadingCircle from "../ui/loading";
+import Loading from "./Loading";
 
 const url = "https://allfunds-backend.onrender.com/api/";
 
@@ -47,21 +49,25 @@ type NewListProps = {
 
 export default function NewsList({ isArchived }: Readonly<NewListProps>) {
   const [news, setNews] = useState<NewSchema[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       if (isArchived) {
         const newsData = await getDataArchived();
         setNews(newsData);
-        return;
+      } else {
+        const newsData = await getData();
+        setNews(newsData);
       }
-      const newsData = await getData();
-      setNews(newsData);
+      setIsLoading(false);
     }
     fetchData();
   }, []);
 
   const handleAction = async (id: string) => {
+    setIsLoading(true);
     if (isArchived) {
       // Remove the item from the archive
       await fetch(url + `news/${id}`, {
@@ -81,11 +87,14 @@ export default function NewsList({ isArchived }: Readonly<NewListProps>) {
       const updatedNews = await getData();
       setNews(updatedNews);
     }
+    setIsLoading(false);
   };
 
   return (
     <div className="flex flex-col gap-4">
-      {news.length === 0 ? (
+      {isLoading ? (
+        <Loading />
+      ) : news.length === 0 ? (
         isArchived ? (
           <EmptyItem
             title="No hay noticias archivadas"
