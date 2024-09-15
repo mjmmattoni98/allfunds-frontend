@@ -1,17 +1,12 @@
-import { Toaster } from "@/components/ui/sonner";
-import { cn } from "@/lib/utils";
+"use client";
+
+import NavbarComponent from "@/components/component/Navbar";
+import { SidebarMenu } from "@/components/component/Sidebar";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import { Inter as FontSans } from "next/font/google";
-import { Suspense } from "react";
 import "./globals.css";
 
 config.autoAddCss = false;
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
 
 export default function RootLayout({
   children,
@@ -20,17 +15,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased",
-          fontSans.variable
-        )}
-      >
+      <body>
         <main>
-          <Suspense>
-            {children}
-            <Toaster />
-          </Suspense>
+          <div>
+            <NavbarComponent />
+            <div className="flex">
+              <div className="hidden sm:block">
+                <SidebarMenu />
+              </div>
+              <main className="w-full p-4">{children}</main>
+            </div>
+          </div>
         </main>
       </body>
     </html>

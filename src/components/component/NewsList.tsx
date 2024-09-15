@@ -45,7 +45,7 @@ type NewListProps = {
   isArchived: boolean;
 };
 
-export default async function NewsList({ isArchived }: Readonly<NewListProps>) {
+export default function NewsList({ isArchived }: Readonly<NewListProps>) {
   const [news, setNews] = useState<NewSchema[]>([]);
 
   useEffect(() => {

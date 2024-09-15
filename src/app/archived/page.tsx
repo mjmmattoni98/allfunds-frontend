@@ -1,7 +1,9 @@
+"use client";
+
 import NewsList from "@/components/component/NewsList";
 import TitlePage from "@/components/component/TitlePage";
 
-export default async function NewsArchivedPage() {
+export default function NewsPage() {
   const showArchivedNews = true;
 
   return (

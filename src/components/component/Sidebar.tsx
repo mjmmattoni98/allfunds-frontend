@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
@@ -30,13 +32,13 @@ export function SidebarMenu() {
       label: "Noticias",
       name: "Nuevas",
       icon: <Newspaper size={15} className="mr-2" />,
-      href: "/news",
+      href: "/",
     },
     {
       label: "Noticias",
       name: "Archivadas",
       icon: <FolderArchive size={15} className="mr-2" />,
-      href: "/news/archived",
+      href: "/archived",
     },
   ];
 
