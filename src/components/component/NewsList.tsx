@@ -3,7 +3,6 @@
 import NewCard, { NewSchema } from "@/components/component/NewCard";
 import { useEffect, useState } from "react";
 import EmptyItem from "./EmptyItem";
-import LoadingCircle from "../ui/loading";
 import Loading from "./Loading";
 
 const url = "https://allfunds-backend.onrender.com/api/";
