@@ -12,11 +12,9 @@ This project is the frontend of a technical test for Allfunds. It is a news appl
 
   - `globals.css`: Global CSS styles.
   - `layout.tsx`: Main layout component.
-  - `news/`: Directory for news-related pages and components.
-    - `archived/page.tsx`: Archived news page.
-    - `layout.tsx`: Layout for news pages.
-    - `page.tsx`: Main news page.
-  - `page.tsx`: Main application page.
+  - `archived/`: Directory for archived news pages and components.
+    - `page.tsx`: Main archived news page.
+  - `page.tsx`: Main application page of the news.
 
 - **src/components/**: Contains reusable UI components.
 
